@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Contato - Wesley Oliveira</title>
+</head>
+
+<body>
+    <div class="particulas"></div>
+
+    <nav class="navegacao"> <!-- Cabeçalho para colocar os link de interação na lista-->
+        <ul class="menu">
+            <li>
+                <a href="index.html" class="menu-link">Início</a>
+            </li>
+            <li>
+                <a href="formação.html" class="menu-link">Formação</a>
+            </li>
+            <li>
+                <a href="projetos.html" class="menu-link">Projetos</a>
+            </li>
+            <li>
+                <a href="contato.html" class="menu-link">Contato</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="contatos"> <!--Inputs de entrada para nome, email e comentario, usando placeholder para explicar melhor o conteudo-->
+        <h2 class="contatos-titulo">Entre em Contato</h2>
+
+        <form class="formulario-contato" id="formulario" onsubmit="enviarWhats(event)"> <!--Comando onsubmit criado com JavaScript para enviar os valores para o Whatsapp-->
+            <div class="grupo-form">
+                <input placeholder="Nome" class="campo-form" id="nome">
+            </div>
+
+            <div class="grupo-form">
+                <input placeholder="Digite seu e-mail" type="email" class="campo-form" id="email">
+            </div>
+
+            <div class="grupo-form">
+                <textarea class="campo-form" placeholder="Digite sua Mensagem" id="mensagem"></textarea>
+            </div>
+
+            <button type="submit" class="botao-form">Enviar WhatsApp</button> <!--Botão de enviar o conteudo do form-->
+        </form>
+
+    </section>
+
+    <!--Código para pega os valores pelo id de cada input, transformar em uma variavel com uma mensagem e formatar ela, e depois manda para meu whatsapp-->
+    <script> 
+        function enviarWhats(event) { 
+            event.preventDefault()
+
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const mensagem = document.getElementById('mensagem').value;
+            const telefone = '5585991043092'
+
+            const texto = `Olá! Me chamo ${nome}, meu email é ${email}, ${mensagem}`
+            const msgFormatada = encodeURIComponent(texto) // Ela substitui caracteres especiais por suas sequências, garantindo que a string possa ser transmitida com segurança em uma URL. 
+
+            const url = `https://wa.me/${telefone}?text=${msgFormatada}` //É um encurtador de links do WhatsApp que permite criar links diretos para iniciar conversas no aplicativo.
+            window.open(url, '_blank') //abri uma nova janela no js, e o blank para abrir uma página nova
+        }
+
+    </script>
+</body>
+
+</html>
